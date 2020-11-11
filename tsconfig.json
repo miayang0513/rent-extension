@@ -13,6 +13,6 @@
     "esModuleInterop": true,
     "declaration": true
   },
-  "exclude": ["node_modules", "dist"],
+  "exclude": ["node_modules", "dist", "configs"],
   "include": ["./src"]
 }
