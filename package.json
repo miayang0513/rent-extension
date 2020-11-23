@@ -1,5 +1,5 @@
 {
-  "name": "rent-extension",
+  "name": "zotsu-extension",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,29 +11,27 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/miayang0513/rent-extension.git"
+    "url": "git+https://github.com/miayang0513/zotsu-extension.git"
   },
   "keywords": [],
   "author": "Mia Yang",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/miayang0513/rent-extension/issues"
+    "url": "https://github.com/miayang0513/zotsu-extension/issues"
   },
-  "homepage": "https://github.com/miayang0513/rent-extension#readme",
+  "homepage": "https://github.com/miayang0513/zotsu-extension#readme",
   "dependencies": {
     "typescript": "^4.0.5"
   },
   "devDependencies": {
+    "@types/chrome": "^0.0.126",
     "@typescript-eslint/eslint-plugin": "^4.7.0",
     "@typescript-eslint/parser": "^4.7.0",
-    "@types/chrome": "^0.0.126",
-    "concurrently": "^5.3.0",
     "copy-webpack-plugin": "^6.3.2",
     "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-webpack-plugin": "^2.2.1",
-    "lite-server": "^2.6.0",
     "prettier": "^2.1.2",
     "ts-loader": "^8.0.11",
     "webpack": "^5.4.0",
