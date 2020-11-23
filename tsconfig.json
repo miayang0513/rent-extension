@@ -2,10 +2,13 @@
   "compilerOptions": {
     "target": "ES2015",
     "module": "ES2015",
-    "lib": ["ES2015", "DOM"],
+    "lib": [
+      "ES2015",
+      "DOM"
+    ],
     "allowJs": true,
-    "outDir": "dist",
-    "rootDir": "./src",
+    "rootDir": "src",
+    "outDir": "dist/js",
     "strict": true,
     "moduleResolution": "node",
     "sourceMap": false,
@@ -13,6 +16,13 @@
     "esModuleInterop": true,
     "declaration": true
   },
-  "exclude": ["node_modules", "dist", "configs"],
-  "include": ["./src"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "configs",
+    "public"
+  ],
+  "include": [
+    "./src"
+  ]
 }
