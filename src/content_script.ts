@@ -1,9 +1,13 @@
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
-  if (msg.test) {
-    //TODO: 調整 591 DOM
-    const title = document.querySelector('span.houseInfoTitle')
-    if (title) title.innerHTML = 'Testing'
-    sendResponse('injected')
-    console.log('injected')
+  const { action } = msg
+  if (action) {
+    if (action === 'changeTitle') {
+      const title = document.querySelector('span.houseInfoTitle')
+      if (title) title.innerHTML = 'Testing'
+      sendResponse('changeTitle')
+      console.log('injected')
+    } else if (action === 'insertPanel') {
+      console.log('Welcome 591 Detail 頁面')
+    }
   }
 })

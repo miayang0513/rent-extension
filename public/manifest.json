@@ -18,24 +18,14 @@
     "page": "options.html",
     "chrome_style": true
   },
-  "permissions": [
-    "activeTab",
-    "storage",
-    "https://rent.591.com.tw/*"
-  ],
+  "permissions": ["activeTab", "storage", "webNavigation", "https://rent.591.com.tw/*"],
   "background": {
-    "scripts": [
-      "js/background.js"
-    ]
+    "scripts": ["js/background.js"]
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://rent.591.com.tw/*"
-      ],
-      "js": [
-        "js/content_script.js"
-      ]
+      "matches": ["https://rent.591.com.tw/*"],
+      "js": ["js/content_script.js"]
     }
   ]
 }
