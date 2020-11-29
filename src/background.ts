@@ -16,6 +16,6 @@ chrome.webNavigation.onCompleted.addListener(
     })
   },
   {
-    url: [{ urlMatches: 'https://rent.591.com.tw/rent-detail-*' }]
+    url: [{ hostSuffix: '591.com.tw' }]
   }
 )

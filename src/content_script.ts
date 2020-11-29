@@ -10,26 +10,32 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     if (title) title.innerHTML = 'Testing'
     sendResponse('changeTitle')
   } else if (action === 'insertPanel') {
-    const bodyElement = document.querySelector('body')
-    const mainElement = document.createElement('div')
-    mainElement.setAttribute('id', 'zotsu-app')
+    if (document.getElementById('zotsu-app')) {
+      return
+    }
+
+    const elementContainer = document.createElement('div')
+    elementContainer.setAttribute('id', 'zotsu-app')
     const left = window.innerWidth - 140
     const top = window.innerHeight - 160
-    mainElement.style.left = left + 'px'
-    mainElement.style.top = top + 'px'
+    elementContainer.style.left = left + 'px'
+    elementContainer.style.top = top + 'px'
 
-    mainElement.innerHTML = `
-        <div class="app-container">
-          <div class="app-icon"></div>
-        </div>
-      `
-    makeDraggable(mainElement)
-    bodyElement?.prepend(mainElement)
+    makeDraggable(elementContainer, () => {
+      console.log('click')
+      window.location.href = 'https://www.youtube.com/'
+    })
+
+    const elementAppIcon = document.createElement('div')
+    elementAppIcon.setAttribute('class', 'app-icon')
+
+    elementContainer.prepend(elementAppIcon)
+    document.querySelector('body')?.prepend(elementContainer)
     sendResponse('insertPanel')
   }
 })
 
-function makeDraggable(element: HTMLElement): void {
+function makeDraggable(element: HTMLElement, clickHandler?: { (): void }): void {
   const dragPosition = {
     currentX: 0,
     currentY: 0,
@@ -38,21 +44,35 @@ function makeDraggable(element: HTMLElement): void {
     xOffset: 0,
     yOffset: 0
   }
+
+  function dragging(event: MouseEvent): void {
+    console.log('move')
+    dragPosition.currentX = event.clientX - dragPosition.initialX
+    dragPosition.currentY = event.clientY - dragPosition.initialY
+    dragPosition.xOffset = dragPosition.currentX
+    dragPosition.yOffset = dragPosition.currentY
+    element.style.transform = `translate(${dragPosition.currentX}px, ${dragPosition.currentY}px)`
+
+    if (clickHandler) {
+      element.removeEventListener('click', clickHandler)
+    }
+  }
+
+  function dragEnd(event: MouseEvent): void {
+    console.log('end')
+    document.removeEventListener('mousemove', dragging, true)
+    document.removeEventListener('mousedown', dragEnd, true)
+  }
+
   element.addEventListener('mousedown', (event) => {
+    console.log('start')
     dragPosition.initialX = event.clientX - dragPosition.xOffset
     dragPosition.initialY = event.clientY - dragPosition.yOffset
+    document.addEventListener('mousemove', dragging, true)
+    document.addEventListener('mouseup', dragEnd, true)
 
-    document.onmousemove = (event) => {
-      event.preventDefault()
-      dragPosition.currentX = event.clientX - dragPosition.initialX
-      dragPosition.currentY = event.clientY - dragPosition.initialY
-      dragPosition.xOffset = dragPosition.currentX
-      dragPosition.yOffset = dragPosition.currentY
-      element.style.transform = `translate(${dragPosition.currentX}px, ${dragPosition.currentY}px)`
-    }
-    document.onmouseup = () => {
-      document.onmouseup = null
-      document.onmousemove = null
+    if (clickHandler) {
+      element.addEventListener('click', clickHandler)
     }
   })
 }

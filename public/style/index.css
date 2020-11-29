@@ -1,6 +1,6 @@
 #zotsu-app {
   position: fixed;
-  z-index: 999;
+  z-index: 99999;
 }
 
 .app-icon {

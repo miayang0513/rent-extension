@@ -24,7 +24,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://rent.591.com.tw/*"],
+      "matches": ["https://*.591.com.tw/*"],
       "js": ["js/content_script.js"],
       "css": ["style/index.css"]
     }
