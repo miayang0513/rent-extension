@@ -11,7 +11,7 @@
     "128": "icons/128.png"
   },
   "browser_action": {
-    "default_icon": "icons/logo.png",
+    "default_icon": "images/logo.png",
     "default_popup": "popup.html"
   },
   "options_ui": {
@@ -26,7 +26,7 @@
     {
       "matches": ["https://*.591.com.tw/*"],
       "js": ["js/content_script.js"],
-      "css": ["style/index.css"]
+      "css": ["css/index.css"]
     }
   ],
   "web_accessible_resources": ["images/*"]
