@@ -11,31 +11,23 @@
     "128": "icons/128.png"
   },
   "browser_action": {
-    "default_icon": "icons/logo.png",
+    "default_icon": "images/logo.png",
     "default_popup": "popup.html"
   },
   "options_ui": {
     "page": "options.html",
     "chrome_style": true
   },
-  "permissions": [
-    "activeTab",
-    "storage",
-    "https://rent.591.com.tw/*"
-  ],
+  "permissions": ["activeTab", "storage", "webNavigation", "https://rent.591.com.tw/*"],
   "background": {
-    "scripts": [
-      "js/background.js"
-    ]
+    "scripts": ["js/background.js"]
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://rent.591.com.tw/*"
-      ],
-      "js": [
-        "js/content_script.js"
-      ]
+      "matches": ["https://*.591.com.tw/*"],
+      "js": ["js/content_script.js"],
+      "css": ["css/index.css"]
     }
-  ]
+  ],
+  "web_accessible_resources": ["images/*"]
 }
