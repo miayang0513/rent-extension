@@ -99,13 +99,23 @@ em {
 .sheet {
   position: absolute;
   width: 160px;
-  padding: 12px 8px;
   background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border-top: none;
   box-sizing: border-box;
   border-radius: 0px 0px 4px 4px;
 
+  transition: max-height 0.5s;
+  overflow: hidden;
+  height: auto;
+  border: 0px;
+  max-height: 0px;
+  &--expand {
+    border: 1px solid #cccccc;
+    border-top: 0px;
+    max-height: 209px;
+  }
+  &__list {
+    padding: 12px 8px;
+  }
   &__item {
     margin-bottom: 8px;
     > div:nth-child(1) {

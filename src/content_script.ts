@@ -55,13 +55,8 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 
     elementAppPanel.addEventListener('click', (e) => {
       e.stopPropagation()
-      if (elementAppPanel.children[0].classList.contains('panel--expand')) {
-        elementAppPanel.children[0].classList.remove('panel--expand')
-        elementSheet.style.display = 'none'
-      } else {
-        elementAppPanel.children[0].classList.add('panel--expand')
-        elementSheet.style.display = 'block'
-      }
+      elementMedian.classList.toggle('panel--expand')
+      elementSheet.classList.toggle('sheet--expand')
     })
 
     elementAppPanel.append(elementMedian)
@@ -132,11 +127,12 @@ function generateMedianPanel(median: number): HTMLElement {
 }
 
 function generateOverallRatingSheet(overallRating: Array<{ name: string; rating: number }>): HTMLElement {
-  const elementSheet = document.createElement('div')
-  elementSheet.style.display = 'none'
-  elementSheet.setAttribute('class', 'sheet')
+  const element = document.createElement('div')
+  element.setAttribute('class', 'sheet')
 
-  let htmlContent = ''
+  let htmlContent = `
+    <div class="sheet__list">
+  `
   overallRating.forEach((item) => {
     htmlContent += `
       <div class="sheet__item">
@@ -163,7 +159,10 @@ function generateOverallRatingSheet(overallRating: Array<{ name: string; rating:
       </div>
     `
   })
-  elementSheet.innerHTML = htmlContent
+  htmlContent += `
+    </div>
+  `
+  element.innerHTML = htmlContent
 
-  return elementSheet
+  return element
 }
